@@ -68,6 +68,36 @@ h1 {
     box-shadow: 0 0 25px rgba(255, 105, 180, 0.7);
 }
 
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+    background: linear-gradient(45deg, #ff69b4, #ff99cc);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+    z-index: 10;
+}
+
+.music-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px rgba(255, 105, 180, 0.7);
+}
+
+@media (max-width: 768px) {
+    .music-btn {
+        top: 12px;
+        right: 12px;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
 .floating {
     position: absolute;
     pointer-events: none;
