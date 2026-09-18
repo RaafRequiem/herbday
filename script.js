@@ -1,3 +1,27 @@
+// Music toggle
+const bgMusic = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+let isMusicPlaying = false;
+
+musicBtn.addEventListener('click', () => {
+    if (isMusicPlaying) {
+        bgMusic.pause();
+        musicBtn.textContent = '🎵 Play Music';
+    } else {
+        bgMusic.play();
+        musicBtn.textContent = '⏸ Pause Music';
+    }
+    isMusicPlaying = !isMusicPlaying;
+});
+
+// Keep saving playback position so the next page can resume from here
+setInterval(() => {
+    if (!bgMusic.paused) {
+        localStorage.setItem('musicTime', bgMusic.currentTime);
+        localStorage.setItem('musicPlaying', 'true');
+    }
+}, 250);
+
 // Cursor following effect
 const cursor = document.querySelector('.cursor');
 document.addEventListener('mousemove', (e) => {
@@ -84,6 +108,10 @@ window.addEventListener('load', () => {
 
         // Smooth page transition on click
         button.addEventListener('click', () => {
+            // Save the exact handoff point so cause.html can resume the muffled track from here
+            localStorage.setItem('musicTime', bgMusic.currentTime);
+            localStorage.setItem('musicPlaying', String(!bgMusic.paused));
+
             gsap.to('body', {
                 opacity: 0,
                 duration: 1,
